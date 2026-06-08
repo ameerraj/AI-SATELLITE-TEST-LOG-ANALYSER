@@ -1,0 +1,5 @@
+start_s,end_s,subsystem,label
+900,1010,EPS,battery_undervoltage
+1800,2050,TCS,panel_overtemperature
+2600,2720,AOCS,reaction_wheel_overspeed
+3000,3150,COMMS,downlink_dropout
