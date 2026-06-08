@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SatLog · AIT Mission Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M3 11l8-8 3 3-8 8z"/><path d="M14 6l4 4-8 8-4-4"/>
+          <circle cx="18.5" cy="5.5" r="1.5"/><path d="M2 22l5-5"/>
+        </svg>
+      </div>
+      <div class="title">
+        <h1>SatLog Analyzer</h1>
+        <div class="sub">AIT · Test Log &amp; Telemetry Intelligence</div>
+      </div>
+    </div>
+    <div class="header-right">
+      {% if sessions %}
+      <div class="session-pick">
+        <label>Session</label>
+        <select id="session-select" onchange="location.search='?session='+this.value">
+          {% for s in sessions %}
+          <option value="{{ s }}" {% if s == session %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+      <div class="clock"><span class="dot"></span><span id="clock">--:--:--</span> UTC</div>
+    </div>
+  </header>
+
+  <main>
+    {% if not data %}
+    <div class="empty">
+      No test sessions found.<br><br>
+      Generate sample data first:<br>
+      <code>python -m satlog.cli generate --session TVAC01</code>
+    </div>
+    {% else %}
+    <div class="section-label">Mission Summary</div>
+    <div class="kpis" id="kpis"></div>
+
+    <div class="section-label">Telemetry Channels</div>
+    <div class="charts" id="charts"></div>
+
+    <div class="section-label">Detected Incidents &amp; Operator Briefings</div>
+    <div class="incidents" id="incidents"></div>
+    {% endif %}
+  </main>
+
+  <footer>
+    SatLog Analyzer · prototype for AI-assisted AIT automation ·
+    backend: <span id="backend-tag">—</span>
+  </footer>
+
+  {% if data %}
+  <script id="analysis-data" type="application/json">{{ data | safe }}</script>
+  {% endif %}
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
