@@ -114,7 +114,7 @@ and recommended next actions.
 
 ---
 
-## Anomaly detection (explainable by design)
+## Anomaly detection 
 
 Three complementary layers, from cheap-and-explainable to learned-and-broad:
 
