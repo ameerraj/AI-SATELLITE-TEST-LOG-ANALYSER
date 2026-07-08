@@ -177,24 +177,10 @@ outputs/           generated analysis JSON + report PNG (git-ignored)
 
 ---
 
-## How this maps to an AIT automation / AI working-student role
 
-This project was built around the day-to-day tasks of an AIT automation team
-exploring AI:
 
-- **Research & prototype AI use cases for integration and testing** — log
-  analysis, anomaly detection, and operator assistance are all implemented here.
-- **Analyse logs, telemetry, and process data to identify automation potential**
-  — the incident-clustering step directly attacks the manual log-review bottleneck.
-- **Prepare technical documentation & concept proposals** — see
-  [`docs/CONCEPT.md`](docs/CONCEPT.md), written as an objectives/scope/risks/benefits proposal.
-- **Python data/ML stack** — `pandas`, `NumPy`, `scikit-learn`, `SciPy`,
-  `matplotlib`, `Flask`.
-- **CCS / EGSE awareness** — the data model, limits, and fault scenarios are
-  framed in check-out-system terms.
-
-See [`docs/CONCEPT.md`](docs/CONCEPT.md) for the proposal-style write-up and
-[`docs/architecture.md`](docs/architecture.md) for design notes.
+See [`docs/CONCEPT.md`](docs/CONCEPT.md) 
+[`docs/architecture.md`](docs/architecture.md) 
 
 ## License
 
